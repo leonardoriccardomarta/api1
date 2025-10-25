@@ -438,7 +438,11 @@
             // Disable button
             button.disabled = true;
             results.classList.add('show');
-            loading.style.display = 'block';
+            
+            // Show loading only if it exists
+            if (loading) {
+                loading.style.display = 'block';
+            }
 
             const startTime = Date.now();
 
@@ -470,7 +474,10 @@
                 
                 const data = await response.json();
 
-                loading.style.display = 'none';
+                // Hide loading if it exists
+                if (loading) {
+                    loading.style.display = 'none';
+                }
                 
                 if (data.success && data.results && data.results.length > 0) {
                     results.innerHTML = `
@@ -488,7 +495,10 @@
                     results.innerHTML = `<p style="color: #ff6b6b;">❌ Error: ${data.error || 'Failed to generate content. Please try again.'}</p>`;
                 }
             } catch (error) {
-                loading.style.display = 'none';
+                // Hide loading if it exists
+                if (loading) {
+                    loading.style.display = 'none';
+                }
                 results.innerHTML = `
                     <p style="color: #ff6b6b;">❌ Error: Connection failed</p>
                     <p style="margin-top: 0.5rem; color: #666; font-size: 0.9rem;">Please check your connection and try again.</p>
