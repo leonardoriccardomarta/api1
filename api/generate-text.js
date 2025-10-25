@@ -124,8 +124,10 @@ module.exports = async (req, res) => {
   } catch (error) {
     console.error('Generation error:', error);
     return res.status(500).json({
+      success: false,
       error: 'Text generation failed',
-      message: error.message
+      message: error.message,
+      details: process.env.NODE_ENV === 'development' ? error.stack : undefined
     });
   }
 };

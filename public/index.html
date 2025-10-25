@@ -461,8 +461,14 @@
                     })
                 });
 
-                const data = await response.json();
                 const responseTime = Date.now() - startTime;
+                
+                if (!response.ok) {
+                    const errorData = await response.json().catch(() => ({ error: 'Unknown error' }));
+                    throw new Error(errorData.error || errorData.message || `HTTP ${response.status}`);
+                }
+                
+                const data = await response.json();
 
                 loading.style.display = 'none';
                 
