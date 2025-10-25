@@ -29,6 +29,8 @@ async function generateFromModel(prompt, opts = {}) {
     // Use the fastest model by default
     const model = MODELS[opts.speed] || MODELS.ultra_fast || MODELS.fast;
     
+    console.log('Attempting to generate with model:', model);
+    
     const response = await groq.chat.completions.create({
       model: model,
       messages: [
@@ -52,6 +54,7 @@ async function generateFromModel(prompt, opts = {}) {
     };
   } catch (error) {
     console.error('Groq API Error:', error.message);
+    console.error('Full error:', JSON.stringify(error, null, 2));
     throw new Error(`AI generation failed: ${error.message}`);
   }
 }
