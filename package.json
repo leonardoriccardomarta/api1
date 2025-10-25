@@ -16,7 +16,7 @@
     "jsonwebtoken": "^9.0.2",
     "micro": "^10.0.1",
     "node-fetch": "^3.3.2",
-    "groq": "^0.8.0",
+    "groq-sdk": "^0.34.0",
     "cors": "^2.8.5",
     "helmet": "^7.1.0"
   },
