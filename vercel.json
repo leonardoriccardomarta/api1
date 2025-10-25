@@ -7,6 +7,8 @@
     { "src": "/api/health", "dest": "/api/health.js" },
     { "src": "/api/(.*)", "dest": "/api/$1.js" },
     { "src": "/favicon.ico", "dest": "/api/favicon.js" },
+    { "src": "/thumbnail.png", "dest": "/api/thumbnail.js" },
+    { "src": "/thumbnail.jpg", "dest": "/api/thumbnail.js" },
     { "src": "/", "dest": "/api/index.js" }
   ],
   "env": {
