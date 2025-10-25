@@ -17,22 +17,12 @@ module.exports = function requireApiKey(req, res) {
     apiKey = req.query.apiKey;
   }
 
-  // Check if coming from RapidAPI
-  const isRapidAPI = req.headers['x-rapidapi-host'];
-  
-  if (!apiKey && !isRapidAPI) {
+  if (!apiKey) {
     res.status(401).json({ 
       error: 'Missing API key',
       message: 'Please provide API key in Authorization header or x-api-key header'
     });
     return false;
-  }
-  
-  // If RapidAPI but no key, use demo key
-  if (!apiKey && isRapidAPI) {
-    req.isDemoKey = true;
-    req.apiKey = 'rapidapi-demo-key';
-    return true;
   }
 
   // Validate API key (basic validation - expand for production)
@@ -44,9 +34,17 @@ module.exports = function requireApiKey(req, res) {
   // Allow demo keys for public demo (rate limited)
   const isDemoKey = apiKey.startsWith('demo_') || apiKey === 'demo-public-key';
   
-  if (!validKeys.some(key => apiKey === key || apiKey.startsWith('user_')) && !isDemoKey) {
+  // For RapidAPI, accept any X-RapidAPI-Key (RapidAPI validates on their end)
+  const isRapidAPI = req.headers['x-rapidapi-host'];
+  
+  if (!validKeys.some(key => apiKey === key || apiKey.startsWith('user_')) && !isDemoKey && !isRapidAPI) {
     res.status(403).json({ error: 'Invalid API key' });
     return false;
+  }
+  
+  // If from RapidAPI, mark as valid
+  if (isRapidAPI) {
+    req.isDemoKey = false; // Use rate limits from RapidAPI subscription
   }
   
   // Mark as demo key for rate limiting
