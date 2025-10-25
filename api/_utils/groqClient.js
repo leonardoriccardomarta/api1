@@ -1,7 +1,14 @@
 const Groq = require('groq-sdk');
 
+// Check for API key
+const apiKey = process.env.GROQ_API_KEY || process.env.OPENAI_API_KEY;
+
+if (!apiKey) {
+  console.error('ERROR: GROQ_API_KEY not found in environment variables');
+}
+
 const groq = new Groq({ 
-  apiKey: process.env.GROQ_API_KEY || process.env.OPENAI_API_KEY
+  apiKey: apiKey
 });
 
 // Ultra-fast models - Groq specific
@@ -14,6 +21,11 @@ const MODELS = {
 
 async function generateFromModel(prompt, opts = {}) {
   try {
+    // Check if API key is configured
+    if (!apiKey) {
+      throw new Error('GROQ_API_KEY not configured. Please set GROQ_API_KEY environment variable.');
+    }
+    
     // Use the fastest model by default
     const model = MODELS[opts.speed] || MODELS.ultra_fast || MODELS.fast;
     
