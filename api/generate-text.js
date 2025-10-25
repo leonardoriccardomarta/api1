@@ -36,7 +36,14 @@ module.exports = async (req, res) => {
   if (!rateLimit(req, res, rateLimitConfig)) return;
 
   try {
-    const body = await json(req);
+    let body;
+    try {
+      body = await json(req);
+    } catch (parseError) {
+      console.error('JSON parse error:', parseError);
+      return res.status(400).json({ error: 'Invalid JSON in request body', message: parseError.message });
+    }
+
     const { 
       type = 'marketing copy',
       input,
