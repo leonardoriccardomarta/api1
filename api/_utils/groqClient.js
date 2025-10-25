@@ -13,9 +13,9 @@ const groq = new Groq({
 
 // Ultra-fast models - Groq specific (updated Oct 2025)
 const MODELS = {
-  ultra_fast: 'mixtral-8x7b-instruct',  // Updated model name
+  ultra_fast: 'llama-3.1-8b-instant',  // Ultra fast 8B model
   fast: 'llama-3.1-70b-versatile',
-  balanced: 'mixtral-8x7b-instruct',
+  balanced: 'llama-3.1-8b-instant',  // Fastest and most reliable
   quality: 'llama-3.1-70b-versatile'
 };
 
