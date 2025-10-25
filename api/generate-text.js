@@ -17,9 +17,10 @@ module.exports = async (req, res) => {
     return res.status(405).json({ error: 'Method Not Allowed. Use POST.' });
   }
 
-  // Authentication
-  const authOk = requireApiKey(req, res);
-  if (!authOk) return;
+  // Authentication - DISABLED FOR DEMO
+  // Uncomment the next 2 lines for production with auth
+  // const authOk = requireApiKey(req, res);
+  // if (!authOk) return;
 
   // Rate limiting (adjusted for RapidAPI usage)
   const plan = req.headers['x-rapidapi-subscription'] || 'free';

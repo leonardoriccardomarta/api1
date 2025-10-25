@@ -145,22 +145,31 @@
             width: 100%;
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             color: white;
-            padding: 1rem;
+            padding: 1.2rem;
             border: none;
-            border-radius: 10px;
+            border-radius: 12px;
             font-size: 1.1rem;
             font-weight: 600;
             cursor: pointer;
-            transition: transform 0.2s;
+            transition: all 0.3s;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+            text-transform: uppercase;
+            letter-spacing: 1px;
         }
 
         .generate-btn:hover {
-            transform: scale(1.02);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(102, 126, 234, 0.6);
+        }
+
+        .generate-btn:active {
+            transform: translateY(0);
         }
 
         .generate-btn:disabled {
             opacity: 0.6;
             cursor: not-allowed;
+            transform: none;
         }
 
         .results {
@@ -173,22 +182,33 @@
         }
 
         .result-item {
-            background: #f8f9fa;
+            background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);
             padding: 1.5rem;
-            border-radius: 10px;
+            border-radius: 15px;
             margin-bottom: 1rem;
             border-left: 4px solid #667eea;
+            box-shadow: 0 2px 10px rgba(102, 126, 234, 0.1);
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .result-item:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 20px rgba(102, 126, 234, 0.2);
         }
 
         .result-number {
-            font-weight: 600;
+            font-weight: 700;
             color: #667eea;
-            margin-bottom: 0.5rem;
+            margin-bottom: 0.75rem;
+            font-size: 0.95rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
         }
 
         .result-text {
             color: #333;
-            line-height: 1.6;
+            line-height: 1.8;
+            font-size: 1.05rem;
         }
 
         .loading {
@@ -402,7 +422,7 @@
     <footer>
         <div class="container">
             <p>Built with ❤️ using Groq & Vercel | Available on RapidAPI</p>
-            <p style="margin-top: 1rem; opacity: 0.7;">© 2024 AI Text Generator Pro - World's Fastest AI API</p>
+            <p style="margin-top: 1rem; opacity: 0.7;">© 2025 AI Text Generator Pro - World's Fastest AI API</p>
         </div>
     </footer>
 
@@ -429,8 +449,7 @@
                 const response = await fetch(API_URL, {
                     method: 'POST',
                     headers: {
-                        'Content-Type': 'application/json',
-                        'Authorization': 'Bearer demo-key'
+                        'Content-Type': 'application/json'
                     },
                     body: JSON.stringify({
                         input: input,
@@ -446,7 +465,7 @@
 
                 loading.style.display = 'none';
                 
-                if (data.success && data.results) {
+                if (data.success && data.results && data.results.length > 0) {
                     results.innerHTML = `
                         <p style="text-align: center; color: #667eea; font-weight: 600; margin-bottom: 1rem;">
                             ✨ Generated in ${responseTime}ms!
@@ -459,14 +478,14 @@
                         `).join('')}
                     `;
                 } else {
-                    results.innerHTML = '<p style="color: red;">Error: API demo not configured. Deploy to test live!</p>';
+                    results.innerHTML = `<p style="color: #ff6b6b;">❌ Error: ${data.error || 'Failed to generate content. Please try again.'}</p>`;
                 }
             } catch (error) {
                 loading.style.display = 'none';
                 results.innerHTML = `
-                    <p style="color: orange;">⚠️ Demo Mode - Deploy your API to test live!</p>
-                    <p style="margin-top: 1rem; color: #666;">Current status: API not deployed yet.</p>
-                    <p style="margin-top: 0.5rem; color: #666;">Follow the instructions in README.md to deploy on Vercel.</p>
+                    <p style="color: #ff6b6b;">❌ Error: Connection failed</p>
+                    <p style="margin-top: 0.5rem; color: #666; font-size: 0.9rem;">Please check your connection and try again.</p>
+                    <p style="margin-top: 0.5rem; color: #999; font-size: 0.85rem;">Debug: ${error.message}</p>
                 `;
                 console.error('Demo error:', error);
             } finally {
