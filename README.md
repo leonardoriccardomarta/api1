@@ -1,31 +1,31 @@
 # AI Text Generator Pro API
 
-World's Fastest AI Text Generation API - Powered by Groq
+**World's Fastest AI Text Generation API - Powered by Groq**
 
-Generate high-quality marketing copy, social media posts, emails, and more at lightning speed with zero infrastructure costs.
+Generate high-quality marketing copy, social media posts, emails, and more at **lightning speed** with **zero infrastructure costs**.
 
-## Why This is THE Best API
+**Why This is THE Best API**
 
-- ULTRA-FAST: Sub-second response times powered by Groq
-- ZERO COST: No OpenAI fees - 100% free to run
-- Global: Multi-language support out of the box
-- Latest Models: Mixtral 8x7B & Llama 3 70B
-- Built for Scale: Handle millions of requests
-- Production Ready: Enterprise-grade reliability
+• **ULTRA-FAST**: Sub-second response times powered by Groq
+• **ZERO COST**: No OpenAI fees - 100% free to run
+• **Global**: Multi-language support out of the box
+• **Latest Models**: Mixtral 8x7B & Llama 3 70B
+• **Built for Scale**: Handle millions of requests
+• **Production Ready**: Enterprise-grade reliability
 
-## Features
+**Features**
 
-- Multiple Variants: Generate up to 5 unique variants
-- Multi-language Support: English, Italian, Spanish, French, German and more
-- Platform Optimized: Facebook, Instagram, Twitter, LinkedIn
-- Performance Analysis: AI-powered engagement & SEO scoring
-- Rate Limiting: Built-in protection and usage tracking
-- 99.9% Uptime: Serverless architecture with Vercel
-- Sub-second Responses: Groq's fastest inference engine
+• **Multiple Variants**: Generate up to 5 unique variants
+• **Multi-language Support**: English, Italian, Spanish, French, German and more
+• **Platform Optimized**: Facebook, Instagram, Twitter, LinkedIn
+• **Performance Analysis**: AI-powered engagement & SEO scoring
+• **Rate Limiting**: Built-in protection and usage tracking
+• **99.9% Uptime**: Serverless architecture with Vercel
+• **Sub-second Responses**: Groq's fastest inference engine
 
-## API Endpoints
+**API Endpoints**
 
-### Generate Text
+*Generate Text*
 ```
 POST /api/generate-text
 
@@ -39,9 +39,9 @@ POST /api/generate-text
 }
 ```
 
-Response Time: Less than 1 second with Groq.
+**Response Time**: Less than 1 second with Groq.
 
-### Analyze Performance
+*Analyze Performance*
 ```
 POST /api/analyze-performance
 
@@ -51,12 +51,12 @@ POST /api/analyze-performance
 }
 ```
 
-### Health Check
+*Health Check*
 ```
 GET /api/health
 ```
 
-## Why Groq?
+**Why Groq?**
 
 | Feature | Groq | OpenAI |
 |---------|------|--------|
@@ -65,53 +65,54 @@ GET /api/health
 | Models | Latest | Older |
 | Setup | Instant | Complex |
 
-## Pricing for RapidAPI
+**Pricing for RapidAPI**
 
-### FREE Tier
-- 200 requests/hour
-- Basic generation
-- 1 variant
+**FREE Tier**
+• 200 requests/hour
+• Basic generation
+• 1 variant
 
-### PRO - $19/month
-- 5000 requests/hour
-- Up to 5 variants
-- Performance analysis
-- Priority support
+**PRO - $19/month**
+• 5000 requests/hour
+• Up to 5 variants
+• Performance analysis
+• Priority support
 
-### ULTRA - $99/month
-- 50000 requests/hour
-- Unlimited variants
-- Custom models
-- Dedicated support
+**ULTRA - $99/month**
+• 50000 requests/hour
+• Unlimited variants
+• Custom models
+• Dedicated support
 
-## Environment Variables
+**Environment Variables**
 
 | Variable | Description | Required |
 |----------|-------------|----------|
 | GROQ_API_KEY | Groq API key | Yes |
 | NODE_ENV | Environment | No |
 
-## Performance Benchmarks
+**Performance Benchmarks**
 
-- Response Time: 300-800ms (vs 2-5s OpenAI)
-- Tokens/sec: 250+ (vs 50 OpenAI)
-- Cost: $0 (vs $0.0015/1k tokens)
-- Uptime: 99.9%
+• Response Time: 300-800ms (vs 2-5s OpenAI)
+• Tokens/sec: 250+ (vs 50 OpenAI)
+• Cost: $0 (vs $0.0015/1k tokens)
+• Uptime: 99.9%
 
-## Supported Models
+**Supported Models**
 
-- Mixtral 8x7B - Best balance of speed & quality
-- Llama 3.1 70B - Highest quality output
-- Llama 3.1 8B Instant - Ultra-fast responses
+• Mixtral 8x7B - Best balance of speed & quality
+• Llama 3.1 70B - Highest quality output
+• Llama 3.1 8B Instant - Ultra-fast responses
 
-## Built With
+**Built With**
 
-- Groq SDK - World's fastest inference
-- Vercel - Serverless hosting
-- Node.js - Runtime
+• Groq SDK - World's fastest inference
+• Vercel - Serverless hosting
+• Node.js - Runtime
 
-## License
+**License**
 
 MIT - Go build something amazing
 
-The fastest AI text generation API in the world. Period.
+**The fastest AI text generation API in the world. Period.**
+
