@@ -63,9 +63,27 @@ module.exports = async (req, res) => {
       return res.status(400).json({ error: 'input is required' });
     }
 
+    // Map language code to full name
+    const languageMap = {
+      'en': 'English',
+      'it': 'Italian',
+      'es': 'Spanish',
+      'fr': 'French',
+      'de': 'German',
+      'pt': 'Portuguese',
+      'nl': 'Dutch',
+      'ru': 'Russian',
+      'ja': 'Japanese',
+      'zh': 'Chinese',
+      'ko': 'Korean'
+    };
+    
+    const languageName = languageMap[language] || language;
+
     // Build optimized prompt
     function buildPrompt(variantIndex) {
-      let prompt = `Generate a ${length} ${type} in ${language}. `;
+      let prompt = `You MUST generate all content in ${languageName} language (${language}). `;
+      prompt += `Generate a ${length} ${type}. `;
       prompt += `Tone: ${tone}. `;
       prompt += `Target audience: ${audience}. `;
       
@@ -77,7 +95,8 @@ module.exports = async (req, res) => {
         prompt += `Include these keywords naturally: ${keywords.join(', ')}. `;
       }
       
-      prompt += `\n\nContent to generate:\n${input}`;
+      prompt += `\n\nContent to generate:\n${input}\n\n`;
+      prompt += `REMEMBER: Write the entire response in ${languageName} language.`;
       
       if (variants > 1) {
         prompt += `\n\nThis is variant ${variantIndex} of ${variants}. Make it unique while maintaining quality.`;
