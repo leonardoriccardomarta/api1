@@ -17,14 +17,16 @@ module.exports = async (req, res) => {
     return res.status(405).json({ error: 'Method Not Allowed. Use POST.' });
   }
 
-  // Authentication - DISABLED FOR DEMO
-  // Uncomment the next 2 lines for production with auth
-  // const authOk = requireApiKey(req, res);
-  // if (!authOk) return;
+  // Authentication - NOW ENABLED with demo key support
+  const authOk = requireApiKey(req, res);
+  if (!authOk) return;
 
   // Rate limiting (adjusted for RapidAPI usage)
-  const plan = req.headers['x-rapidapi-subscription'] || 'free';
+  // Demo keys get very limited requests for public demo
+  const isDemoKey = req.isDemoKey;
+  const plan = req.headers['x-rapidapi-subscription'] || (isDemoKey ? 'demo' : 'free');
   const limits = {
+    demo: { limit: 10, windowMs: 60 * 1000 }, // Demo: 10 req/min
     free: { limit: 100, windowMs: 60 * 1000 },
     basic: { limit: 500, windowMs: 60 * 1000 },
     pro: { limit: 2000, windowMs: 60 * 1000 },

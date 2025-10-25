@@ -31,9 +31,17 @@ module.exports = function requireApiKey(req, res) {
     ...(process.env.VALID_API_KEYS?.split(',') || [])
   ].filter(Boolean);
 
-  if (!validKeys.some(key => apiKey === key || apiKey.startsWith('user_'))) {
+  // Allow demo keys for public demo (rate limited)
+  const isDemoKey = apiKey.startsWith('demo_') || apiKey === 'demo-public-key';
+  
+  if (!validKeys.some(key => apiKey === key || apiKey.startsWith('user_')) && !isDemoKey) {
     res.status(403).json({ error: 'Invalid API key' });
     return false;
+  }
+  
+  // Mark as demo key for rate limiting
+  if (isDemoKey) {
+    req.isDemoKey = true;
   }
 
   req.apiKey = apiKey;
