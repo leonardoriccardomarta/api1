@@ -1,7 +1,7 @@
 // API Key authentication middleware
 module.exports = function requireApiKey(req, res) {
   // Extract API key from various sources
-  const auth = req.headers['authorization'] || req.headers['x-api-key'] || '';
+  const auth = req.headers['authorization'] || req.headers['x-api-key'] || req.headers['x-rapidapi-key'] || '';
   let apiKey = '';
   
   if (auth.startsWith('Bearer ')) {
