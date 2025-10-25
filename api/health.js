@@ -8,7 +8,7 @@ module.exports = async (req, res) => {
     service: 'AI Text Generator Pro',
     version: '2.0.0',
     provider: 'Groq',
-    models: ['mixtral-8x7b-32768', 'llama-3-70b-8192'],
+    models: ['mixtral-8x7b-instruct', 'llama-3.1-70b-versatile'],
     performance: {
       avg_response_time: '< 1s',
       uptime: '99.9%'

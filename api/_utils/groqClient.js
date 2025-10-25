@@ -11,12 +11,12 @@ const groq = new Groq({
   apiKey: apiKey
 });
 
-// Ultra-fast models - Groq specific
+// Ultra-fast models - Groq specific (updated Oct 2025)
 const MODELS = {
-  ultra_fast: 'mixtral-8x7b-32768',
-  fast: 'llama-3-70b-8192',
-  balanced: 'mixtral-8x7b-32768',
-  quality: 'llama-3-70b-8192'
+  ultra_fast: 'mixtral-8x7b-instruct',  // Updated model name
+  fast: 'llama-3.1-70b-versatile',
+  balanced: 'mixtral-8x7b-instruct',
+  quality: 'llama-3.1-70b-versatile'
 };
 
 async function generateFromModel(prompt, opts = {}) {
