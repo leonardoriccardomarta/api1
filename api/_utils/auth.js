@@ -17,12 +17,22 @@ module.exports = function requireApiKey(req, res) {
     apiKey = req.query.apiKey;
   }
 
-  if (!apiKey) {
+  // Check if coming from RapidAPI
+  const isRapidAPI = req.headers['x-rapidapi-host'];
+  
+  if (!apiKey && !isRapidAPI) {
     res.status(401).json({ 
       error: 'Missing API key',
       message: 'Please provide API key in Authorization header or x-api-key header'
     });
     return false;
+  }
+  
+  // If RapidAPI but no key, use demo key
+  if (!apiKey && isRapidAPI) {
+    req.isDemoKey = true;
+    req.apiKey = 'rapidapi-demo-key';
+    return true;
   }
 
   // Validate API key (basic validation - expand for production)

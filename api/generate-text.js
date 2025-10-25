@@ -7,7 +7,7 @@ module.exports = async (req, res) => {
   // Enable CORS
   res.setHeader('Access-Control-Allow-Origin', '*');
   res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
-  res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization, x-api-key');
+  res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization, x-api-key, x-rapidapi-key, x-rapidapi-host');
 
   if (req.method === 'OPTIONS') {
     return res.end();
@@ -15,6 +15,13 @@ module.exports = async (req, res) => {
 
   if (req.method !== 'POST') {
     return res.status(405).json({ error: 'Method Not Allowed. Use POST.' });
+  }
+
+  // Debug: Log headers for RapidAPI
+  if (process.env.NODE_ENV !== 'production') {
+    console.log('Headers received:', Object.keys(req.headers));
+    console.log('X-RapidAPI-Key:', req.headers['x-rapidapi-key']);
+    console.log('Authorization:', req.headers['authorization']);
   }
 
   // Authentication - NOW ENABLED with demo key support
