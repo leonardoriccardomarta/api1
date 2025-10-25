@@ -9,7 +9,7 @@ Generate high-quality marketing copy, social media posts, emails, and more at **
 • **ULTRA-FAST**: Sub-second response times powered by Groq
 • **ZERO COST**: No OpenAI fees - 100% free to run
 • **Global**: Multi-language support out of the box
-• **Latest Models**: Mixtral 8x7B & Llama 3 70B
+• **Latest Models**: Llama 3.1 8B Instant
 • **Built for Scale**: Handle millions of requests
 • **Production Ready**: Enterprise-grade reliability
 
@@ -100,9 +100,7 @@ GET /api/health
 
 **Supported Models**
 
-• Mixtral 8x7B - Best balance of speed & quality
-• Llama 3.1 70B - Highest quality output
-• Llama 3.1 8B Instant - Ultra-fast responses
+• **Llama 3.1 8B Instant** - Ultra-fast responses for production use
 
 **Built With**
 
