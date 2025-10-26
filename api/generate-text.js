@@ -36,12 +36,28 @@ module.exports = async (req, res) => {
   if (!rateLimit(req, res, rateLimitConfig)) return;
 
   try {
-    let body;
+    let body = {};
     try {
+      // Try to parse JSON body
       body = await json(req);
     } catch (parseError) {
-      console.error('JSON parse error:', parseError);
-      return res.status(400).json({ error: 'Invalid JSON in request body', message: parseError.message });
+      console.error('JSON parse error:', parseError.message);
+      // If body is empty, check query params
+      if (req.query && Object.keys(req.query).length > 0) {
+        body = req.query;
+      } else if (parseError.message.includes('Unexpected end of JSON input')) {
+        // Empty body - return helpful error
+        return res.status(400).json({ 
+          error: 'Invalid JSON in request body', 
+          message: 'Please send a JSON body with at least an "input" field',
+          example: { input: "Example text to generate", type: "social post", tone: "professional", language: "en" }
+        });
+      } else {
+        return res.status(400).json({ 
+          error: 'Invalid JSON in request body', 
+          message: parseError.message 
+        });
+      }
     }
 
     const { 
