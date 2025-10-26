@@ -25,29 +25,38 @@ Generate high-quality marketing copy, social media posts, emails, and more at **
 
 **API Endpoints**
 
-*Generate Text*
+**Generate Text**
 ```
 POST /api/generate-text
 
+Body Parameters:
 {
-  "input": "Create a product description for AI-powered headphones",
-  "type": "product description",
-  "tone": "professional",
-  "length": "medium",
-  "variants": 3,
-  "language": "en"
+  "input": "Create a product description for AI-powered headphones",  // REQUIRED
+  "type": "social post" | "email" | "ad copy" | "product description" | "blog title",  // OPTIONAL (default: "marketing copy")
+  "tone": "professional" | "friendly" | "casual" | "persuasive" | "exciting",  // OPTIONAL (default: "professional")
+  "length": "short" | "medium" | "long",  // OPTIONAL (default: "medium")
+  "language": "en" | "it" | "es" | "fr" | "de" | "pt" | "nl" | "ru" | "ja" | "zh" | "ko",  // OPTIONAL (default: "en")
+  "variants": 1-5,  // OPTIONAL (default: 1, max: 5)
+  "keywords": ["keyword1", "keyword2"],  // OPTIONAL
+  "audience": "general",  // OPTIONAL (default: "general")
+  "platform": "all" | "facebook" | "instagram" | "twitter" | "linkedin"  // OPTIONAL (default: "all")
+  "speed": "ultra_fast" | "fast" | "balanced" | "quality",  // OPTIONAL (default: "balanced")
+  "temperature": 0.0-2.0  // OPTIONAL (default: 0.7)
 }
 ```
 
 **Response Time**: Less than 1 second with Groq.
 
-*Analyze Performance*
+**Analyze Performance**
 ```
 POST /api/analyze-performance
 
+Body Parameters:
 {
-  "text": "Your marketing copy here...",
-  "platform": "instagram"
+  "text": "Your marketing copy here...",  // REQUIRED
+  "context": "social media post" | "email" | "ad" | "product description",  // OPTIONAL
+  "platform": "facebook" | "instagram" | "twitter" | "linkedin" | "email",  // OPTIONAL
+  "goals": ["engagement", "conversions", "brand awareness"]  // OPTIONAL
 }
 ```
 
