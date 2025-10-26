@@ -93,12 +93,14 @@ GET /api/health
 • Custom models
 • Dedicated support
 
-**Environment Variables**
+**Environment Variables** (Only for Self-Hosting)
 
 | Variable | Description | Required |
 |----------|-------------|----------|
-| GROQ_API_KEY | Groq API key | Yes |
-| NODE_ENV | Environment | No |
+| GROQ_API_KEY | Groq API key from console.groq.com | Yes |
+| NODE_ENV | Environment (production/development) | No |
+
+**Note**: If you're using this API on RapidAPI, you don't need to set up environment variables - just subscribe to a plan and start making requests!
 
 **Performance Benchmarks**
 
