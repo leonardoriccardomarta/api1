@@ -1,13 +1,5 @@
 // API Key authentication middleware
 module.exports = function requireApiKey(req, res) {
-  // Debug: Log all headers
-  console.log('=== AUTH DEBUG ===');
-  console.log('All headers:', JSON.stringify(req.headers, null, 2));
-  console.log('X-RapidAPI-Key:', req.headers['x-rapidapi-key']);
-  console.log('X-RapidAPI-Host:', req.headers['x-rapidapi-host']);
-  console.log('Authorization:', req.headers['authorization']);
-  console.log('X-API-Key:', req.headers['x-api-key']);
-  
   // Extract API key from various sources
   const auth = req.headers['authorization'] || req.headers['x-api-key'] || req.headers['x-rapidapi-key'] || '';
   let apiKey = '';

@@ -17,13 +17,6 @@ module.exports = async (req, res) => {
     return res.status(405).json({ error: 'Method Not Allowed. Use POST.' });
   }
 
-  // Debug: Log headers for RapidAPI
-  if (process.env.NODE_ENV !== 'production') {
-    console.log('Headers received:', Object.keys(req.headers));
-    console.log('X-RapidAPI-Key:', req.headers['x-rapidapi-key']);
-    console.log('Authorization:', req.headers['authorization']);
-  }
-
   // Authentication - NOW ENABLED with demo key support
   const authOk = requireApiKey(req, res);
   if (!authOk) return;
